@@ -29,6 +29,7 @@ Traditionally, JavaScript is an interpreted language. However, modern JavaScript
 ### Q1. What is the difference between var, let, and const?
 
 <div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
+
 # var vs let vs const in JavaScript
 
 | Feature                          | `var`                                                | `let`                                                              | `const`                                                            |
@@ -1077,47 +1078,52 @@ Array(7); // Creates an empty array of length 7 (not the same as [7])
 </div>
 </br>
 
-# Lecture 16
+# Lecture 16, 17, 18
 
 ### Q1. Object Literal Declaration vs Object Constructor Declaration
 
 <div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
 
 ## 🔹Using Object Literal
+
 The simplest and most common way to create an object.
 
 ```js
 const person = {
   name: "Alice",
   age: 25,
-  greet: function() {
+  greet: function () {
     console.log(`Hello, I'm ${this.name}`);
-  }
+  },
 };
 
 person.greet(); // Hello, I'm Alice
 ```
+
 ## 🔹Using Object Constructor
 
 Using the Object constructor or custom constructors (functions or classes).
 
 ### a) Built-in Object constructor:
+
 ```js
 const person = new Object();
 person.name = "Bob";
 person.age = 30;
-person.greet = function() {
+person.greet = function () {
   console.log(`Hello, I'm ${this.name}`);
 };
 
 person.greet(); // Hello, I'm Bob
 ```
+
 ### b) Custom constructor function:
+
 ```js
 function Person(name, age) {
   this.name = name;
   this.age = age;
-  this.greet = function() {
+  this.greet = function () {
     console.log(`Hello, I'm ${this.name}`);
   };
 }
@@ -1125,7 +1131,8 @@ function Person(name, age) {
 const person1 = new Person("Charlie", 35);
 person1.greet(); // Hello, I'm Charlie
 ```
-</div>  
+
+</div>
 
 ---
 
@@ -1134,11 +1141,12 @@ person1.greet(); // Hello, I'm Charlie
 <div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
 
 A **singleton object** in JavaScript is an object that is created only once and used globally throughout your code. It ensures that there is only one instance of that object during the application's lifecycle.
+
 </div>
 
 ---
 
-### Q3. Object Access 
+### Q3. Object Access
 
 <div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
 JavaScript allows you to access object properties in two ways:
@@ -1150,32 +1158,37 @@ JavaScript allows you to access object properties in two ways:
 - Property name must be a valid identifier (no spaces, special characters, etc.)
 
 ### Example:
+
 ```js
 const person = {
   name: "Alice",
-  age: 25
+  age: 25,
 };
 
 console.log(person.name); // Output: Alice
-console.log(person.age);  // Output: 25
+console.log(person.age); // Output: 25
 ```
 
 ## ✅ 2. Bracket Notation ([])
+
 - Used when the property name is stored in a variable or includes special characters or spaces.
 - Property name must be a string or expression that resolves to a string.
+
 ### Example:
+
 ```js
 const person = {
   name: "Alice",
-  "favorite color": "blue"
+  "favorite color": "blue",
 };
 
-console.log(person["name"]);             // Output: Alice
-console.log(person["favorite color"]);   // Output: blue
+console.log(person["name"]); // Output: Alice
+console.log(person["favorite color"]); // Output: blue
 
 const key = "name";
 console.log(person[key]); // Output: Alice
 ```
+
 </div>
 
 ---
@@ -1189,29 +1202,31 @@ const symKey = Symbol("userId");
 
 const user = {
   name: "Alice",
-  [symKey]: 12345
+  [symKey]: 12345,
 };
 
-console.log(user.name);         // "Alice"
-console.log(user[symKey]);      // 12345
+console.log(user.name); // "Alice"
+console.log(user[symKey]); // 12345
 ```
+
 </div>
 
 ---
 
-### Q5. Object Methods 
+### Q5. Object Methods
 
 <div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
 
-| Method                        | Changes Original? | What It Returns                 | What It Does                                                                 | 🧪 Example                                                                 |
-|------------------------------|-------------------|----------------------------------|------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| `Object.keys(obj)`           | ❌ No             | Array of keys                    | Returns an array of all **enumerable property names**                        | `Object.keys({a:1, b:2})` → `["a", "b"]`                                   |
-| `Object.values(obj)`         | ❌ No             | Array of values                  | Returns an array of all **enumerable property values**                       | `Object.values({a:1, b:2})` → `[1, 2]`                                     |
-| `Object.entries(obj)`        | ❌ No             | Array of `[key, value]` pairs    | Returns an array of **[key, value] pairs**                                   | `Object.entries({a:1, b:2})` → `[["a", 1], ["b", 2]]`                      |
-| `Object.assign(target, src)` | ✅ Yes (if target) | Modified target object           | Copies properties from source to target and returns updated target           | `Object.assign({x:1}, {y:2})` → `{x:1, y:2}`                               |
-| `Object.freeze(obj)`         | ✅ Yes (locks it)  | The frozen object                | Prevents **adding, removing, or changing** any properties                    | `let a = Object.freeze({x:10}); a.x = 5;` → `x` stays `10`                |
-| `Object.seal(obj)`           | ✅ Yes (locks shape)| The sealed object               | Prevents adding/removing props, **but allows modifying existing ones**       | `let a = Object.seal({x:10}); a.x = 20;` → valid, but can't add `a.y = 5` |
-| `obj.hasOwnProperty(key)`    | ❌ No             | Boolean (`true` / `false`)       | Checks if the object has the property directly (not via prototype chain)     | `{a:1}.hasOwnProperty("a")` → `true`                                      |
+| Method                       | Changes Original?    | What It Returns               | What It Does                                                             | 🧪 Example                                                                |
+| ---------------------------- | -------------------- | ----------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| `Object.keys(obj)`           | ❌ No                | Array of keys                 | Returns an array of all **enumerable property names**                    | `Object.keys({a:1, b:2})` → `["a", "b"]`                                  |
+| `Object.values(obj)`         | ❌ No                | Array of values               | Returns an array of all **enumerable property values**                   | `Object.values({a:1, b:2})` → `[1, 2]`                                    |
+| `Object.entries(obj)`        | ❌ No                | Array of `[key, value]` pairs | Returns an array of **[key, value] pairs**                               | `Object.entries({a:1, b:2})` → `[["a", 1], ["b", 2]]`                     |
+| `Object.assign(target, src)` | ✅ Yes (if target)   | Modified target object        | Copies properties from source to target and returns updated target       | `Object.assign({x:1}, {y:2})` → `{x:1, y:2}`                              |
+| `Object.freeze(obj)`         | ✅ Yes (locks it)    | The frozen object             | Prevents **adding, removing, or changing** any properties                | `let a = Object.freeze({x:10}); a.x = 5;` → `x` stays `10`                |
+| `Object.seal(obj)`           | ✅ Yes (locks shape) | The sealed object             | Prevents adding/removing props, **but allows modifying existing ones**   | `let a = Object.seal({x:10}); a.x = 20;` → valid, but can't add `a.y = 5` |
+| `obj.hasOwnProperty(key)`    | ❌ No                | Boolean (`true` / `false`)    | Checks if the object has the property directly (not via prototype chain) | `{a:1}.hasOwnProperty("a")` → `true`                                      |
+
 </div>
 
 ---
@@ -1226,19 +1241,569 @@ When a function is a method of an object, `this` refers to the object itself.
 
 ---
 
-
 ```js
 const person = {
   name: "Alice",
-  greet: function() {
+  greet: function () {
     console.log(`Hello, my name is ${this.name}`);
-  }
+  },
 };
 
 person.greet(); // Output: Hello, my name is Alice
 ```
+
 - Arrow functions do not have their own `this`. They inherit `this` from their surrounding (lexical) scope.
+</div>
+
+---
+
+### Q7. Destructuring of the Object
+
+<div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
+
+**Object destructuring** is a feature in ES6 that allows you to **unpack values from objects** into individual variables.
+
+```js
+const person = {
+  name: "Alice",
+  age: 25,
+  city: "New York",
+};
+
+const { name, age } = person;
+
+console.log(name); // Alice
+console.log(age); // 25
+```
+
+### ⚠️ Note: Rename variable while destructuring
+
+```js
+const user = {
+  id: 101,
+  username: "john_doe",
+};
+
+const { id: userId, username: name } = user;
+
+console.log(userId); // 101
+console.log(name); // john_doe
+```
+
 </div>
 </br>
 
-# Lecture 17
+# Lecture 19
+
+### Q1. Functions
+
+<div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
+
+| #   | Function Type                                  | Description                                                                                                                                                 | Example Syntax                                            |
+| --- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| 1   | Function Declaration                           | A traditional way to define a function using the `function` keyword. These are **hoisted**, meaning they can be called before they are defined in the code. | `function greet() { console.log("hello"); }`              |
+| 2   | Function Expression                            | A function assigned to a variable. These are **not hoisted**, so they must be defined before use.                                                           | `const greet = function() { console.log("hello"); };`     |
+| 3   | Arrow Function (ES6)                           | A **concise syntax** introduced in ES6. Does **not bind its own `this`, `arguments`, or `super`**, making it ideal for callbacks.                           | `const greet = () => { console.log("hello"); };`          |
+| 4   | Anonymous Function                             | A function **without a name**, often used as a callback in expressions like `setTimeout` or array methods.                                                  | `setTimeout(function() { console.log("hello"); }, 2000);` |
+| 5   | IIFE (Immediately Invoked Function Expression) | A function that is **defined and executed immediately**. Used to create isolated scopes.                                                                    | `(function() { console.log("hello"); })();`               |
+
+</div>
+
+---
+
+### Q2. Function Parameters and Arguments
+
+<div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
+
+- Parameters: placeholders used
+  when creating the function.
+- Arguments: actual values passed
+  when calling the function.
+- Parameters in a function is like
+local variable having block scope.
+</div>
+
+---
+
+### Q3. Default Parameters
+
+<div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
+
+Default parameters allow you to **set default values** for function parameters if no value (or `undefined`) is passed during the function call.
+
+```js
+function greet(name = "Guest") {
+  console.log(`Hello, ${name}!`);
+}
+
+greet("Hitesh"); // Output: Hello, Hitesh!
+greet(); // Output: Hello, Guest!
+```
+
+</div>
+</br>
+
+# Lecture 20
+
+### Q1. Rest Operator
+
+<div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
+
+The rest operator (`...`) allows a function to accept an indefinite number of arguments as an array. It's commonly used when you don't know how many parameters will be passed to a function.
+
+```js
+function greetEveryone(...names) {
+  names.forEach((name) => {
+    console.log(`Hello, ${name}!`);
+  });
+}
+
+greetEveryone("Alice", "Bob", "Charlie");
+// Hello, Alice!
+// Hello, Bob!
+// Hello, Charlie!
+```
+
+### Combining Fixed and Rest Parameters
+
+```js
+function showInfo(title, ...details) {
+  console.log("Title:", title);
+  console.log("Details:", details);
+}
+
+showInfo("Book", "Author: John", "Year: 2025");
+// Title: Book
+// Details: ["Author: John", "Year: 2025"]
+```
+
+</div>
+</br>
+
+# Lecture 21
+
+### Q1. Block Scope vs Global Scope vs Function Scope
+
+<div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
+
+## 🌍 Global Scope
+
+- Variables declared **outside any function or block**.
+- Accessible **anywhere in your code** (except in modules where top-level variables are not global by default).
+
+## 🔧 Function Scope
+
+- Variables declared inside a function using var, let, or const are scoped to that function.
+- Not accessible outside the function.
+
+## 📦 Block Scope
+
+- Introduced with let and const in ES6.
+- Variables declared inside {} are only accessible within that block
+
+### ⚠️ var is not block scoped, only function scoped.
+
+</div>
+</br>
+
+# Lecture 22
+
+### Q1. Hoisting in JavaScript
+
+<div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
+
+**Hoisting** is a JavaScript mechanism where **variable and function declarations** are moved to the **top of their scope** (either global or function) **during the compilation phase**, before code execution.
+
+This means you can _reference_ functions and variables before they are formally declared in the code, although the behavior varies depending on how they are declared.
+
+---
+
+### ✅ Function Declarations
+
+Function declarations are **fully hoisted**, meaning you can call them before they appear in the code.
+
+```js
+greet(); // ✅ Works!
+
+function greet() {
+  console.log("Hello!");
+}
+```
+
+---
+
+### ⚠️ Function Expressions and Arrow Function
+
+Function expressions, whether declared with `var`, `let`, or `const`, are **not hoisted** the same way. They behave like variables. (same for arrow functions)
+
+```js
+sayHello(); // ❌ TypeError: sayHello is not a function
+
+var sayHello = function () {
+  console.log("Hi!");
+};
+```
+
+---
+
+### 🧠 Variable Declarations
+
+| Keyword | Hoisted | Initialized    | TDZ (Temporal Dead Zone) | Can use before declaration |
+| ------- | ------- | -------------- | ------------------------ | -------------------------- |
+| `var`   | ✅ Yes  | ✅ `undefined` | ❌ No TDZ                | ✅ Yes (but `undefined`)   |
+| `let`   | ✅ Yes  | ❌ No          | ✅ Yes                   | ❌ ReferenceError          |
+| `const` | ✅ Yes  | ❌ No          | ✅ Yes                   | ❌ ReferenceError          |
+
+#### Example:
+
+```js
+console.log(a); // undefined (only declaration hoisted)
+var a = 5;
+
+console.log(b); // ❌ ReferenceError
+let b = 10;
+```
+
+## 🔚 Summary
+
+- **Declarations** (not initializations) are hoisted.
+- `var` gets hoisted and initialized with `undefined`.
+- `let` and `const` are hoisted but not initialized (TDZ applies).
+- Function **declarations** are hoisted, **function expressions are not**.
+- Hoisting can lead to **unexpected bugs**, so understanding it helps write more predictable code.
+
+</div>
+</br>
+
+# Lecture 23
+
+### Q1. `this` keyword in JavaScript
+
+<div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
+
+In JavaScript, `this` is a dynamic reference that refers to the object that is executing the current function. Its value depends on **how** and **where** the function is invoked.
+
+---
+
+## 1. `this` in Global Scope
+
+### In Browser:
+
+```javascript
+console.log(this);
+// Output: Window (the global object in browsers)
+```
+
+### In Node.js:
+
+```js
+console.log(this);
+// Output: {} (an empty object, not the global object)
+```
+
+## 2. `this` Inside a Function
+
+Non-Strict Mode:
+
+```js
+function showThis() {
+  console.log(this);
+}
+showThis();
+// Output in browser: Window
+// Output in Node.js: global
+```
+
+Strict Mode:
+
+```js
+"use strict";
+function showThis() {
+  console.log(this);
+}
+showThis();
+// Output: undefined
+```
+
+## 3. `this` in an Object Method
+
+When a function is called as a method of an object, this refers to the object.
+
+```js
+const obj = {
+  name: "JavaScript",
+  greet() {
+    console.log(this.name);
+  },
+};
+
+obj.greet();
+// Output: JavaScript
+```
+
+## 4. `this` in Arrow Functions
+
+Arrow functions do not have their own `this`. Instead, they inherit `this` from their surrounding (lexical) scope.
+
+```js
+const obj = {
+  name: "Arrow",
+  greet: () => {
+    console.log(this.name);
+  }
+};
+
+obj.greet();
+// Output: undefined (inherits from global scope)
+
+--------------------------------------
+
+const obj = {
+  name: "Arrow",
+  greet: function(){
+    const arrowFunction = () => {
+      console.log(this);
+    }
+    arrowFunction();
+  }
+};
+
+obj.greet();
+// Output: { name: 'Arrow', greet: [Function: greet] }
+
+```
+
+## 5. `this` in Constructor Functions or Classes
+
+When using constructors or classes, `this` refers to the instance of the object created.
+
+```js
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    console.log(`Hello, ${this.name}`);
+  }
+}
+
+const person = new Person("John");
+person.greet();
+// Output: Hello, John
+```
+
+## 6. `this` with call, apply, and bind
+
+These methods let you explicitly set the value of `this`.
+
+```js
+function greet() {
+  console.log(this.name);
+}
+
+const user = { name: "Alice" };
+
+greet.call(user); // Output: Alice
+greet.apply(user); // Output: Alice
+
+const boundGreet = greet.bind(user);
+boundGreet(); // Output: Alice
+```
+
+## 7. `this` in Event Listeners
+
+In regular functions used as event handlers, `this` refers to the DOM element that received the event.
+
+```js
+document.querySelector("button").addEventListener("click", function () {
+  console.log(this);
+  // Output: <button> element
+});
+```
+
+In contrast, using an arrow function inside an event listener will cause `this` to refer to the enclosing lexical scope (usually window).
+
+```js
+document.querySelector("button").addEventListener("click", () => {
+  console.log(this);
+  // Output: window (or undefined in strict mode)
+});
+```
+
+| Context                   | `this` refers to                    |
+| ------------------------- | ----------------------------------- |
+| Global (Browser)          | `window`                            |
+| Global (Node.js)          | `{}` (module exports object)        |
+| Function (non-strict)     | Global object (`window` / `global`) |
+| Function (strict mode)    | `undefined`                         |
+| Object Method             | The object itself                   |
+| Arrow Function            | Lexical (surrounding) scope         |
+| Constructor / Class       | The new instance                    |
+| `call` / `apply` / `bind` | Explicitly provided object          |
+| Event Handler (function)  | The HTML element triggering event   |
+| Event Handler (arrow)     | Lexical scope (usually `window`)    |
+
+</div>
+</br>
+
+# Lecture 24
+
+### Q1. IIFE
+
+<div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
+
+- An **IIFE (Immediately Invoked Function Expression)** is a function that is **defined and executed immediately**. It's a common JavaScript pattern used to create a **private scope**, helping to avoid polluting the global namespace.
+
+- An IIFE is created by wrapping a function inside parentheses to treat it as an **expression**, and then immediately **invoking** it with another set of parentheses:
+
+```javascript
+(function () {
+  // Code inside IIFE
+})();
+```
+
+- Unnameed IIFE
+- Named IIFE
+- IIFE with parameters
+- IIFE with variable scope
+
+## 💡 Why Use an IIFE?
+
+✅ Avoid Global Scope Pollution:
+Prevents variable collisions by keeping data private.
+
+✅ Encapsulation:
+Allows creation of isolated modules or private code blocks.
+
+✅ Immediate Execution:
+Useful for running initialization or setup code right away.
+
+✅ Avoiding Hoisting:
+Prevents variable declarations from being moved to the top of the scope.
+
+### NOTE: When using multiple IIFEs (Immediately Invoked Function Expressions) in a script, ending each one with a semicolon ; is considered good practice.
+
+</div>
+</br>
+
+# Lecture 25
+
+### Q1. JavaScript Execution Context
+<div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
+
+# 📘 JavaScript Execution Context (EC)
+
+In JavaScript, the **execution context** is the environment in which code is **evaluated and executed**. It controls the scope, accessibility of variables, and behavior of functions.
+
+---
+
+## 🧠 What Is Execution Context?
+
+An **Execution Context** is created whenever code runs. It defines:
+- What variables are accessible
+- What functions can be invoked
+- The value of `this`
+
+---
+
+## 🔄 Types of Execution Context
+
+| Type                      | Description |
+|---------------------------|-------------|
+| **Global Execution Context (GEC)** | Created when JavaScript starts running. It's the default/base context. In browsers, the global object is `window`; in Node.js, it is `global`. |
+| **Function Execution Context (FEC)** | Created every time a function is called. Each function has its own EC with a new scope. |
+| **Eval Execution Context** | Created when code is executed inside the `eval()` function (rare and discouraged). |
+
+---
+
+## 🧩 Phases of Execution Context
+
+Each execution context goes through **two key phases**:
+
+### 1. **Creation Phase**
+- Memory is allocated for variables/functions.
+- `var` variables are initialized with `undefined`.
+- `let` and `const` are hoisted but remain in the **Temporal Dead Zone (TDZ)**.
+- Functions are hoisted **as a whole**.
+
+### 2. **Execution Phase**
+- Code is executed **line-by-line**.
+- Variable values are assigned.
+- Functions are invoked.
+
+---
+
+## 📦 Components of Execution Context
+
+| Component         | Description |
+|------------------|-------------|
+| **Variable Environment** | Stores function/variable declarations. |
+| **Lexical Environment** | Includes the current scope and the scope chain (used for variable resolution). |
+| **this Binding**         | The context (`this`) which depends on how the function is called (global object in non-strict mode, `undefined` in strict mode, etc.). |
+
+---
+
+## 📚 Call Stack & Function Execution
+
+JavaScript is **single-threaded**, and uses a **Call Stack** to manage execution contexts:
+
+### 🔁 How it Works:
+
+- When a function is called, a new **Function Execution Context (FEC)** is created and **pushed** onto the stack.
+- When the function finishes, it is **popped** off the stack and the function context is deleted and then control returns to the previous context. 
+
+### 🔄 Call Stack Example:
+
+```js
+// Global Execution Context
+let name = "Alice";
+
+function greet() {
+  // Function Execution Context
+  let greeting = "Hello";
+  console.log(`${greeting}, ${name}!`);
+}
+
+greet(); // Output: Hello, Alice!
+```
+
+### 🔼 Stack Flow:
+1. GEC is created and pushed.
+2. `greet()` is called → FEC created and pushed.
+3. Function runs → prints output.
+4. FEC is popped and deleted.
+5. GEC remains until the program ends.
+
+---
+
+## 🎯 Return Value and GEC
+
+- The **return value** of a function is passed back to the **caller**, not the **GEC itself**.
+- GEC only stores **global variables and functions**.
+- Return values may be **stored in variables declared in GEC**, but they are not automatically placed into it.
+
+```js
+function sum(a, b) {
+  return a + b; // return value
+}
+
+let result = sum(2, 3); // result stored in GEC
+console.log(result); // 5
+```
+
+---
+
+## ✅ Summary
+
+| Concept         | Summary |
+|----------------|---------|
+| Execution Context | Environment where JS is executed. |
+| GEC             | Default context, created when the script starts. |
+| FEC             | Created each time a function is called. |
+| Phases          | Creation (hoisting), then Execution (running code). |
+| Call Stack      | Tracks active ECs (LIFO structure). |
+| Return Values   | Returned to caller; GEC doesn't automatically store them. |
+</div>
+</br>
+
