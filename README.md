@@ -91,7 +91,7 @@ Hitesh
 
 # JavaScript Data Types
 
-JavaScript has **eight basic (primitive) data types**, plus complex types like `Object`.
+JavaScript has **seven basic (primitive) data types**, plus complex types like `Object`.
 
 ---
 
@@ -251,6 +251,8 @@ let now = new Date(); // Date
 | `"Hitesh"` | `Boolean("Hitesh")` | `true`  | Non-empty string → true         |
 | `" "`      | `Boolean(" ")`      | `true`  | Non-empty string (space) → true |
 
+
+- 8 falsy values are `false`, `0`,`-0`,`0n`, `""`, `null`, `undefined`, `NaN`
 </div>
 
 ---
@@ -1080,7 +1082,7 @@ Array(7); // Creates an empty array of length 7 (not the same as [7])
 
 # Lecture 16, 17, 18
 
-### Q1. Object Literal Declaration vs Object Constructor Declaration
+### Q1. Object Literal Declaration vs Object Constructor Declaration vs Object.create()
 
 <div style="background-color:black; color:white; padding: 10px; border-radius: 5px;">
 
@@ -1132,6 +1134,32 @@ const person1 = new Person("Charlie", 35);
 person1.greet(); // Hello, I'm Charlie
 ```
 
+## 🔹Using Object.create()
+
+`Object.create()` is a JavaScript method used to create a new object with the specified prototype object and properties. It offers a way to achieve classical inheritance in JavaScript by explicitly setting an object's prototype. 
+
+- The syntax for `Object.create()` is: `Object.create(proto, [propertiesObject])`
+
+```js
+const animal = {
+  eats: true,
+  walk() {
+    console.log("Animal walks.");
+  }
+};
+
+// Create a new object 'dog' whose prototype is 'animal'
+const dog = Object.create(animal);
+
+dog.barks = true; // Add a property to 'dog' itself
+
+console.log(dog.eats);   // Output: true (inherited from 'animal')
+dog.walk();              // Output: Animal walks. (inherited from 'animal')
+console.log(dog.barks);  // Output: true (own property)
+
+// Verify the prototype chain
+console.log(Object.getPrototypeOf(dog) === animal); // Output: true
+```
 </div>
 
 ---
